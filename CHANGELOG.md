@@ -4,6 +4,15 @@ Note: Only use **NEW:** for entirely new prompt files, NOT for new additions/sec
 
 ### Claude Code System Prompts Changelog
 
+# [2.1.100](https://github.com/Piebald-AI/claude-code-system-prompts/commit/0e00200)
+
+_-845 tokens_
+
+- **REMOVED:** System Prompt: Exploratory questions — analyze before implementing — Removed instructions for Claude to respond to open-ended questions with analysis, options, and tradeoffs instead of jumping to implementation.
+- **REMOVED:** System Prompt: Output efficiency — Removed instructions for concise and direct text output, leading with answers over reasoning and limiting responses to essential information.
+- **REMOVED:** System Prompt: User-facing communication style — Removed detailed guidelines for writing clear, concise, and readable user-facing text including prose style, update cadence, formatting rules, and audience-aware explanations.
+- System Prompt: Communication style — Tightened end-of-turn summary guidance from describing the format to a stricter "one or two sentences. What changed and what's next. Nothing else."
+
 # [2.1.98](https://github.com/Piebald-AI/claude-code-system-prompts/commit/a23620e)
 
 _+2,045 tokens_
