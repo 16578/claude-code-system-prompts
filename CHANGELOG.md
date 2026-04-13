@@ -4,6 +4,38 @@ Note: Only use **NEW:** for entirely new prompt files, NOT for new additions/sec
 
 ### Claude Code System Prompts Changelog
 
+# [2.1.105](https://github.com/Piebald-AI/claude-code-system-prompts/commit/0b584ef)
+
+_+4,895 tokens_
+
+- **NEW:** Skill: Verify skill (runtime-verification) — Added alias of the Verify skill registered under the `/runtime-verification` slash command name with identical content but different frontmatter invoke name.
+- **REMOVED:** System Prompt: MCP Tool Result Truncation — Removed guidelines for handling long outputs from MCP tools, including when to use direct file queries vs subagents for analysis.
+- **REMOVED:** System Reminder: Loop wakeup not scheduled — Removed instructions for handling a /loop dynamic mode wakeup that was not scheduled.
+- **REMOVED:** Tool Description: ScheduleWakeup (/loop dynamic mode) — Removed standalone tool description for scheduling the next iteration in /loop dynamic mode; content merged into the Snooze tool description.
+- Agent Prompt: Explore — Removed inline `whenToUse` description and `whenToUseDynamic` flag from agent metadata; renamed disallowed tool entry from `Agent` to `R4`.
+- Agent Prompt: Plan mode (enhanced) — Renamed disallowed tool entry from `Agent` to `R4`.
+- Agent Prompt: Managed Agents onboarding flow — Updated file download example to use `scope_id` parameter with explicit beta header instead of the previous `scope` parameter.
+- Agent Prompt: Memory synthesis — Restructured from paragraph-based synthesis to a fact-extraction format returning up to 7 standalone relevant facts; added detailed usefulness criteria (avoid re-asking, apply preferences, maintain continuity, avoid pitfalls) and tighter style guidance.
+- Data: Managed Agents client patterns — Rewrote Pattern 9 to clarify that vaults are MCP-only and there is no way to set container environment variables; added security note that custom tools don't expose a public endpoint; added warning against embedding API keys in system prompts or user messages.
+- Data: Managed Agents core concepts — Added warning that agent archive is permanent with no unarchive, and that archived agents cannot be referenced by new sessions.
+- Data: Managed Agents endpoint reference — Expanded archive descriptions for agents and environments to clarify permanence, read-only state, and lack of unarchive; clarified which resources support delete vs archive vs both.
+- Data: Managed Agents environments and resources — Updated file listing examples to use `scope_id` with explicit `betas` header across all SDK examples; added SDK version requirements and fallback guidance for older SDKs; documented that GitHub repositories are cached for faster session startup; added guidance on rotating repository authorization tokens on running sessions; explained that `authorization_token` is never placed inside the container and is injected by an Anthropic-side git proxy.
+- Data: Managed Agents events and steering — Added note distinguishing routine session archival from permanent agent/environment archival.
+- Data: Managed Agents overview — Rewrote beta header guidance to explain which headers the SDK sets automatically and when to pass both headers explicitly for session-scoped file listing; added reading-guide entry for non-MCP secrets via custom tools; added common pitfall warning that archive is permanent on every resource.
+- Data: Managed Agents reference — Python — Updated file listing to use `scope_id` with explicit beta header; updated example session IDs from `sess_abc123` to realistic `sesn_011CZx...` format.
+- Data: Managed Agents reference — TypeScript — Updated file listing to use `scope_id` with explicit beta header; updated example session IDs to realistic `sesn_011CZx...` format.
+- Data: Managed Agents reference — cURL — Updated file listing endpoint from `scope` to `scope_id` query parameter; added both `files-api` and `managed-agents` beta headers explicitly on file listing and download examples.
+- Data: Managed Agents tools and skills — Added new "Credentials and the sandbox" section explaining that vaulted credentials never enter the sandbox, how MCP and git proxy injection works, current limitations for non-MCP CLIs, and workarounds via custom tools; added warning against embedding API keys in prompts.
+- System Prompt: Fork usage guidelines — Simplified forking guidance by removing separate research/implementation bullet points and merging into a single paragraph; removed advice about setting `model` and `name` on forks.
+- System Reminder: Exited plan mode — Simplified the conditional plan file reference to a generic conditional note.
+- Tool Description: Agent (usage notes) — Added "trust but verify" guidance instructing Claude to check actual code changes from agents before reporting work as done, rather than relying solely on agent summaries.
+- Tool Description: Background monitor (streaming events) — Added "silence is not success" guidance requiring monitors to match all terminal states (failures, crashes, OOM) not just the happy path; added examples of wrong vs right grep patterns for comprehensive coverage; updated output volume guidance to emphasize capturing both success and failure signals; added note about merging stderr with `2>&1` for directly-run commands.
+- Tool Description: EnterWorktree — Expanded trigger conditions to include CLAUDE.md and memory instructions directing worktree usage, not just explicit user requests; added support for entering an existing worktree via a new `path` parameter that accepts paths from `git worktree list`.
+- Tool Description: ReadFile — Added extension point for additional usage notes.
+- Tool Description: Snooze (delay and reason guidance) — Absorbed the former ScheduleWakeup /loop dynamic mode description, now including the base tool description for scheduling loop iterations with sentinel handling.
+- Skill: /loop self-pacing mode — Added extension point for additional info when stopping the loop.
+- Skill: Dynamic pacing loop execution — Replaced fixed tick summary label with a configurable confirmation message; added extension point for additional info when stopping the loop.
+
 # [2.1.104](https://github.com/Piebald-AI/claude-code-system-prompts/commit/7015f84)
 
 _+8 tokens_
